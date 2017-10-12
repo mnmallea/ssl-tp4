@@ -1,3 +1,14 @@
+/*
+    TP4-2017
+    Trabajo Práctico Nº4
+    Grupo 01
+    Integrantes:
+    Chipian, Rocío          159.474-6
+    Gabadian, Gastón        159.080-7
+    Mallea, Martín          159.093-5
+    Tripodi, María Belén    159.981-7
+*/
+
 #include <stdio.h>
 #include "scanner.h"
 #include "parser.h"
