@@ -28,6 +28,7 @@ bloqueCodigo		: bloqueCodigo sentencia ';'
 sentencia		: LEER '(' listaIdentificadores ')' {printf("Leer\n");}
 			| ESCRIBIR '(' listaExpresiones ')' {printf("Escribir\n");}
 			| IDENTIFICADOR ASIGNACION expresion {printf("Asignacion\n");}
+			| error ASIGNACION expresion
 			;
 listaIdentificadores	: listaIdentificadores ',' IDENTIFICADOR
 			| IDENTIFICADOR 
