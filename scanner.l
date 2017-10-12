@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include "parser.h"
+char mensaje[200];
 %}
 %option header-file="scanner.h"
 %option outfile="scanner.c"
@@ -31,10 +32,10 @@ definir				return DEFINIR;
 ,				return ',';
 "("				return '(';
 ")"				return ')';		
-{digito}+{letra}+		{yyerror("Error léxico: constante con sufijo inválido"); yylexerrs++;}
-{letra}({letra}|{digito})*{invalido}({invalido}|{letra}|{digito})*	{yyerror("Error léxico: identificador invalido"); yylexerrs++;}
-{invalido}+			{yyerror("Error léxico: cadena desconocida"); yylexerrs++;}
-"/""/".*			;
-\t|\n|" "    			;
+{digito}+{letra}({digito}|{letra})*		{sprintf(mensaje,"Error léxico: constante con sufijo inválido: %s",yytext); yyerror(mensaje); yylexerrs++;}
+{letra}({letra}|{digito})*{invalido}({invalido}|{letra}|{digito})*	{sprintf(mensaje,"Error léxico: identificador invalido: %s", yytext); yyerror(mensaje); yylexerrs++;}
+{invalido}+				{sprintf(mensaje,"Error léxico: cadena desconocida: %s", yytext); yyerror(mensaje); yylexerrs++;}
+"//".*			;
+[[:space:]]   			;
 
 %%

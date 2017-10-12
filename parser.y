@@ -9,7 +9,10 @@ extern int yyerrs;
 }
 %defines "parser.h"
 %output "parser.c"
-%token IDENTIFICADOR CONSTANTE PUNTUACION PROGRAMA LEER ESCRIBIR DEFINIR FIN VARIABLES CODIGO ASIGNACION 
+%token IDENTIFICADOR CONSTANTE PROGRAMA LEER ESCRIBIR DEFINIR FIN VARIABLES CODIGO ASIGNACION
+%left '+' '-'
+%left '*' '/'
+%precedence NEG 
 %define api.value.type {char *}
 %define parse.error verbose
 %%
@@ -43,7 +46,7 @@ termino			: termino '*' factor {printf("Multiplicacion\n");}
 			;
 factor			: CONSTANTE
 			| '(' expresion ')' {printf("Parentesis\n");}
-			| '-' expresion {printf("Inversion\n");}
+			| '-' expresion %prec NEG {printf("Inversion\n");}
 			| IDENTIFICADOR
 			| error
 			;
