@@ -37,18 +37,13 @@ listaIdentificadores	: listaIdentificadores ',' IDENTIFICADOR
 listaExpresiones	: expresion ',' listaExpresiones
 			| expresion
 			;
-expresion		: expresion '+' termino {printf("Suma\n");}
-			| expresion '-' termino {printf("Resta\n");}
-			| termino
-			;
-termino			: termino '*' factor {printf("Multiplicacion\n");}
-			| termino '/' factor {printf("Division\n");}
-			| factor
-			;
-factor			: CONSTANTE
-			| '(' expresion ')' {printf("Parentesis\n");}
+expresion		: expresion '+' expresion {printf("Suma\n");}
+			| expresion '-' expresion {printf("Resta\n");}
+			| expresion '*' expresion {printf("Multiplicacion\n");}
+			| expresion '/' expresion {printf("Division\n");}
 			| '-' expresion %prec NEG {printf("Inversion\n");}
 			| IDENTIFICADOR
+			| CONSTANTE
 			| error
 			;
 %%

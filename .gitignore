@@ -6,3 +6,6 @@ parser.c
 parser.h
 scanner.c
 scanner.h
+salidaok.txt
+salidaerr.txt
+salidaerr2.txt
