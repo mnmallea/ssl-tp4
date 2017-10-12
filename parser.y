@@ -28,7 +28,7 @@ bloqueCodigo		: bloqueCodigo sentencia ';'
 sentencia		: LEER '(' listaIdentificadores ')' {printf("Leer\n");}
 			| ESCRIBIR '(' listaExpresiones ')' {printf("Escribir\n");}
 			| IDENTIFICADOR ASIGNACION expresion {printf("Asignacion\n");}
-			| error ASIGNACION expresion
+			| error
 			;
 listaIdentificadores	: listaIdentificadores ',' IDENTIFICADOR
 			| IDENTIFICADOR 
@@ -44,6 +44,7 @@ expresion		: expresion '+' expresion {printf("Suma\n");}
 			| '-' expresion %prec NEG {printf("Inversion\n");}
 			| IDENTIFICADOR
 			| CONSTANTE
+			| '(' expresion ')' {printf("Paréntesis\n");}
 			| error
 			;
 %%
